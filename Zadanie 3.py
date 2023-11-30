@@ -52,7 +52,7 @@ def Funkcja_szescienna(x,data):
         
         i -=1
     
-    #obliczanie a
+    #obliczanie A
     A = numpy.zeros(n) 
     for i in range(n):
         A[i] += (1/(6*h[i])) * (z[i+1] - z[i])
@@ -76,7 +76,7 @@ def Funkcja_szescienna(x,data):
     
     for i in range(n):
         if i == 0:
-            s_linear += (data[0,1] + (x-data[0,0])*(C[0] + ((x - data[0,0])*(B[0] +((x-data[0,0])*A[0]) )))) * (x<=data[i+1,0])
+            s_linear += (data[i,1] + (x-data[i,0])*(C[i] + ((x - data[i,0])*(B[i] +((x-data[i,0])*A[i]) )))) * (x<=data[i+1,0])
         elif i == n-1:
             s_linear += (data[i,1] + (x-data[i,0])*(C[i] + ((x - data[i,0])*(B[i] +((x-data[i,0])*A[i]) )))) * (x > data[i,0])
         else:
