@@ -8,7 +8,6 @@ Created on Thu Nov 30 19:18:53 2023
 import numpy
 from scipy.interpolate import CubicSpline
 
-
 x = numpy.linspace(0.0, 10.0, 100)
 data = numpy.array([[1.0,3.0], [2.0,1.0], [3.5,4.0], [5.0,0.0], [6.0,0.5], [9.0,-2.0], [9.5,-3.0]])
 n = data.shape[0]-1
@@ -49,7 +48,7 @@ def Funkcja_szescienna(x,data):
         
         i -=1
     
-    #obliczanie a
+    #obliczanie A
     A = numpy.zeros(n) 
     for i in range(n):
         A[i] += (1/(6*h[i])) * (z[i+1] - z[i])
@@ -66,14 +65,13 @@ def Funkcja_szescienna(x,data):
     C = numpy.zeros(n)  
     for i in range(n):
         C[i] += (((-1*h[i])/6)*(z[i+1]+ (2*z[i]))) + ((1/(h[i]) * (data[i+1,1]-data[i,1])))
-    
-    
+
     
     s_linear = numpy.zeros(x.shape[0])
     
     for i in range(n):
         if i == 0:
-            s_linear += (data[0,1] + (x-data[0,0])*(C[0] + ((x - data[0,0])*(B[0] +((x-data[0,0])*A[0]) )))) * (x<=data[i+1,0])
+            s_linear += (data[i,1] + (x-data[i,0])*(C[i] + ((x - data[i,0])*(B[i] +((x-data[i,0])*A[i]) )))) * (x<=data[i+1,0])
         elif i == n-1:
             s_linear += (data[i,1] + (x-data[i,0])*(C[i] + ((x - data[i,0])*(B[i] +((x-data[i,0])*A[i]) )))) * (x > data[i,0])
         else:
