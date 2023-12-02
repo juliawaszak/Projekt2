@@ -84,7 +84,7 @@ def Funkcja_szescienna(x,data):
     
     return s_linear
 
-cs = CubicSpline(iksy,igreki, bc_type='natural')
+cs = CubicSpline(iksy,igreki)
 y = cs(x)
 fig2 = plt.figure()
 axes2 = fig2.add_subplot(1,1,1)
